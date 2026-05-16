@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zürich — Reiseführer von Nestor Asanin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8C97A;--cream:#F5EDD8;--dark:#0A0A08;--dark2:#111110;--dark3:#1A1A18;--dark4:#252522;--text:#D4C9B0;--muted:#7A7568;--red:#C0392B;--blue:#2980B9;--green:#27AE60;--purple:#8E44AD;--orange:#E67E22}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:'DM Mono',monospace;font-weight:300;overflow-x:hidden;cursor:crosshair}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--gold)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:linear-gradient(to bottom,rgba(10,10,8,0.95),transparent);backdrop-filter:blur(2px)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.3em;text-transform:uppercase}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-buy{border:1px solid var(--gold);color:var(--gold)!important;padding:.4rem 1rem;transition:all .3s!important}
+.nav-buy:hover{background:var(--gold)!important;color:var(--dark)!important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden;text-align:center;padding:8rem 2rem 4rem}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,.06) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(201,168,76,.04) 0%,transparent 60%)}
+.hero-line{width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:0 auto 2rem;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.hero-label{font-size:.6rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;animation:fadeUp 1s .2s both}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(6rem,18vw,16rem);line-height:.85;color:var(--cream);animation:fadeUp 1s .4s both}
+.hero-title span{display:block;color:var(--gold);font-size:.25em;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;letter-spacing:.2em;margin-top:.5rem}
+.hero-sub{margin-top:2.5rem;font-size:.65rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;animation:fadeUp 1s .6s both;max-width:400px}
+
+/* AUTHOR NAME — prominent on startseite */
+.hero-author{margin-top:2rem;animation:fadeUp 1s .8s both;display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.hero-author-label{font-size:.5rem;letter-spacing:.5em;color:var(--muted);text-transform:uppercase}
+.hero-author-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:400;color:var(--cream);letter-spacing:.15em;position:relative;padding:0 2rem}
+.hero-author-name::before,.hero-author-name::after{content:'';position:absolute;top:50%;width:30px;height:1px;background:var(--gold)}
+.hero-author-name::before{left:-10px}
+.hero-author-name::after{right:-10px}
+
+.hero-scroll{margin-top:3rem;font-size:.55rem;color:var(--muted);letter-spacing:.3em;text-transform:uppercase;animation:fadeUp 1s 1s both}
+.hero-scroll::after{content:'';display:block;width:1px;height:40px;background:var(--muted);margin:.8rem auto 0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* PHOTO GALLERY */
+.gallery-section{padding:0;background:var(--dark)}
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px;gap:3px}
+.gallery-item{overflow:hidden;position:relative}
+.gallery-item:first-child{grid-row:1/3}
+.gallery-img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.75) saturate(.85);transition:filter .5s,transform .5s}
+.gallery-item:hover .gallery-img{filter:brightness(.95) saturate(1.05);transform:scale(1.03)}
+.gallery-caption{position:absolute;bottom:0;left:0;right:0;padding:.6rem 1rem;background:linear-gradient(transparent,rgba(10,10,8,.8));font-size:.55rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .3s}
+.gallery-item:hover .gallery-caption{opacity:1}
+
+.section{padding:8rem 3rem;max-width:1200px;margin:0 auto}
+.section-tag{font-size:.55rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.section-tag::before{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.section-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:var(--cream);line-height:1;margin-bottom:1rem}
+.section-heading em{font-style:italic;color:var(--gold)}
+.divider{width:60px;height:1px;background:var(--gold);margin:2rem 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4rem}
+.about-img-wrap{aspect-ratio:3/4;overflow:hidden;position:relative;border:1px solid var(--dark4)}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(.9);transition:filter .5s,transform .6s}
+.about-img-wrap:hover img{filter:brightness(.95) saturate(1);transform:scale(1.03)}
+.about-img-wrap::before{content:'';position:absolute;inset:8px;border:1px solid rgba(201,168,76,.2);z-index:1;pointer-events:none}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.stat-label{font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem}
+.about-text{font-size:.85rem;line-height:2;color:var(--text)}
+.map-section{background:var(--dark2);padding:8rem 0}
+.map-container{max-width:1200px;margin:0 auto;padding:0 3rem}
+.map-layout{display:grid;grid-template-columns:1fr 280px;gap:3rem;margin-top:4rem}
+.map-wrapper{position:relative;background:#1a2a1a;border:1px solid var(--dark4);overflow:hidden}
+.map-svg{width:100%;height:500px}
+.map-legend{display:flex;flex-direction:column;gap:.8rem}
+.legend-title{font-size:.55rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
+.legend-item{display:flex;align-items:center;gap:.8rem;cursor:pointer;padding:.6rem;border:1px solid transparent;transition:all .2s}
+.legend-item:hover{border-color:var(--dark4);background:var(--dark3)}
+.legend-item.active{border-color:var(--gold)}
+.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.legend-text{font-size:.65rem;color:var(--text);letter-spacing:.05em}
+.legend-count{margin-left:auto;font-size:.55rem;color:var(--muted)}
+.map-info-box{margin-top:1.5rem;padding:1rem;background:var(--dark3);border-left:2px solid var(--gold);display:none}
+.map-info-box.visible{display:block}
+.map-info-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--cream)}
+.map-info-cat{font-size:.55rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin:.3rem 0}
+.map-info-desc{font-size:.65rem;color:var(--muted);line-height:1.8}
+.places-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--dark4);border:1px solid var(--dark4)}
+.place-card{background:var(--dark);padding:2rem;position:relative;transition:background .3s;cursor:pointer;overflow:hidden}
+.place-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s}
+.place-card:hover{background:var(--dark2)}
+.place-card:hover::before{width:100%}
+.place-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--dark3);position:absolute;top:.5rem;right:1rem;line-height:1;user-select:none}
+.place-cat-dot{width:8px;height:8px;border-radius:50%;margin-bottom:1rem}
+.place-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:.5rem;line-height:1.1}
+.place-district{font-size:.55rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem}
+.place-desc{font-size:.68rem;color:var(--muted);line-height:1.9;margin-bottom:1.5rem}
+.place-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.place-tag{font-size:.55rem;border:1px solid var(--dark4);color:var(--muted);padding:.2rem .6rem;letter-spacing:.1em;text-transform:uppercase}
+.place-stars{display:flex;gap:2px;margin-bottom:.8rem}
+.star{color:var(--gold);font-size:.7rem}
+.star.empty{color:var(--dark4)}
+.night-section{background:#04060A;padding:8rem 3rem;position:relative;overflow:hidden}
+.night-section::before{content:'NIGHT';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:30vw;color:rgba(255,255,255,.015);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap}
+.night-inner{max-width:1200px;margin:0 auto}
+.night-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:4rem}
+.night-card{border:1px solid #1a1a2a;padding:2rem;position:relative;transition:border-color .3s}
+.night-card:hover{border-color:var(--purple)}
+.night-card-glow{position:absolute;top:0;left:0;width:100%;height:2px}
+.night-card-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#fff;margin-bottom:.4rem}
+.night-card-type{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1rem}
+.night-card-desc{font-size:.68rem;color:#556;line-height:1.9}
+.night-tag{display:inline-block;margin-top:1rem;font-size:.55rem;padding:.2rem .8rem;border-radius:20px;letter-spacing:.1em}
+.gems-section{background:var(--dark2);padding:8rem 3rem}
+.gems-inner{max-width:1200px;margin:0 auto}
+.gems-list{margin-top:4rem}
+.gem-row{display:grid;grid-template-columns:80px 1fr 1fr auto;gap:2rem;align-items:center;padding:1.5rem 0;border-bottom:1px solid var(--dark4);transition:all .3s;cursor:pointer}
+.gem-row:hover{background:var(--dark3);padding-left:1rem}
+.gem-index{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--dark4)}
+.gem-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--cream)}
+.gem-desc{font-size:.65rem;color:var(--muted);line-height:1.7}
+.gem-badge{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid var(--dark4);color:var(--muted);white-space:nowrap}
+
+/* FOOD */
+.food-section{background:var(--dark);padding:8rem 3rem}
+.food-inner{max-width:1200px;margin:0 auto}
+.food-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem}
+.food-card{background:var(--dark2);border:1px solid var(--dark4);overflow:hidden;transition:transform .3s}
+.food-card:hover{transform:translateY(-4px)}
+.food-img-ph{height:160px;overflow:hidden;position:relative;border-bottom:1px solid var(--dark4)}
+.food-img-ph img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) saturate(.85);transition:filter .4s,transform .4s}
+.food-card:hover .food-img-ph img{filter:brightness(.95) saturate(1);transform:scale(1.06)}
+.food-card-body{padding:1.2rem}
+.food-card-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--cream);margin-bottom:.3rem}
+.food-card-type{font-size:.55rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem}
+.food-card-desc{font-size:.6rem;color:var(--muted);line-height:1.8}
+.price-range{margin-top:.8rem;font-size:.7rem;color:var(--gold)}
+
+.transport-section{background:var(--dark3);padding:6rem 3rem}
+.transport-inner{max-width:1200px;margin:0 auto}
+.transport-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
+.transport-card{text-align:center;padding:2rem 1rem;border:1px solid var(--dark4);transition:border-color .3s}
+.transport-card:hover{border-color:var(--gold)}
+.transport-icon{font-size:2rem;margin-bottom:1rem}
+.transport-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);margin-bottom:.5rem}
+.transport-desc{font-size:.6rem;color:var(--muted);line-height:1.9}
+.buy-section{background:var(--gold);padding:6rem 3rem;text-align:center;position:relative;overflow:hidden}
+.buy-section::before{content:'HEFT';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:25vw;color:rgba(0,0,0,.06);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap}
+.buy-label{font-size:.6rem;letter-spacing:.4em;color:rgba(0,0,0,.5);text-transform:uppercase;margin-bottom:1rem}
+.buy-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);color:var(--dark);font-weight:300;line-height:1.1;margin-bottom:1.5rem}
+.buy-desc{font-size:.75rem;color:rgba(0,0,0,.6);max-width:500px;margin:0 auto 2.5rem;line-height:1.9}
+.buy-btn{display:inline-block;background:var(--dark);color:var(--gold);padding:1rem 3rem;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;transition:all .3s;border:2px solid var(--dark);cursor:pointer}
+.buy-btn:hover{background:transparent;color:var(--dark)}
+.buy-features{display:flex;justify-content:center;gap:3rem;margin-top:3rem}
+.buy-feature{font-size:.6rem;color:rgba(0,0,0,.5);letter-spacing:.1em}
+.buy-feature strong{display:block;font-size:.9rem;color:var(--dark);font-family:'Cormorant Garamond',serif;font-weight:400;margin-bottom:.2rem}
+footer{background:var(--dark);padding:3rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--dark4)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);letter-spacing:.3em}
+.footer-text{font-size:.6rem;color:var(--muted);letter-spacing:.1em}
+.footer-author{font-family:'Cormorant Garamond',serif;color:var(--cream);font-size:.75rem;letter-spacing:.1em}
+.pin-tooltip{position:absolute;background:rgba(10,10,8,.95);border:1px solid var(--gold);padding:.6rem .8rem;font-size:.6rem;color:var(--cream);pointer-events:none;white-space:nowrap;z-index:10;opacity:0;transition:opacity .2s;backdrop-filter:blur(4px)}
+.pin-tooltip.show{opacity:1}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.section{padding:5rem 1.5rem}.about-grid{grid-template-columns:1fr}.map-layout{grid-template-columns:1fr}.places-grid{grid-template-columns:1fr}.night-grid{grid-template-columns:1fr}.gem-row{grid-template-columns:50px 1fr}.gem-desc,.gem-badge{display:none}.food-grid{grid-template-columns:1fr 1fr}.transport-grid{grid-template-columns:1fr 1fr}.buy-features{flex-direction:column;gap:1rem;align-items:center}footer{flex-direction:column;gap:1rem;text-align:center}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px}.gallery-item:first-child{grid-row:auto;grid-column:1/3}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Zürich</div>
+  <ul class="nav-links">
+    <li><a href="#about">Stadt</a></li>
+    <li><a href="#map">Karte</a></li>
+    <li><a href="#places">Orte</a></li>
+    <li><a href="#night">Nachtleben</a></li>
+    <li><a href="#gems">Geheimtipps</a></li>
+    <li><a href="#food">Essen</a></li>
+
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-label">Reiseführer · 2025</div>
+  <h1 class="hero-title">ZÜRICH<span>Die Stadt am See</span></h1>
+  <p class="hero-sub">Entdecke eine der schönsten Städte der Welt — von der Altstadt bis zum Uetliberg</p>
+  <div class="hero-author">
+    <span class="hero-author-label">Ein Reiseführer von</span>
+    <span class="hero-author-name">Nestor Asanin</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&w=900&q=80" alt="Zürich Altstadt" loading="lazy">
+      <div class="gallery-caption">Zürich · Altstadt</div>
+    </div>
+    <div class="gallery-item">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&w=600&q=80" alt="Zürich Strassen" loading="lazy">
+      <div class="gallery-caption">Zürich · Strassen</div>
+    </div>
+    <div class="gallery-item">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="Alpen" loading="lazy">
+      <div class="gallery-caption">Alpen · Panorama</div>
+    </div>
+    <div class="gallery-item">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=600&q=80" alt="Zürichsee" loading="lazy">
+      <div class="gallery-caption">Zürichsee</div>
+    </div>
+    <div class="gallery-item">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1574265745700-8f25e1a2879f?auto=format&fit=crop&w=600&q=80" alt="Zürich Nacht" loading="lazy">
+      <div class="gallery-caption">Zürich · Nacht</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">Die Stadt</div>
+      <h2 class="section-heading">Willkommen in <em>Zürich</em></h2>
+      <div class="divider"></div>
+      <p class="about-text">Zürich ist die grösste Stadt der Schweiz und liegt am nördlichen Ende des Zürichsees. Mit ihrer perfekten Mischung aus mittelalterlicher Altstadt, modernem Kulturleben und atemberaubender Natur begeistert sie Besucher aus der ganzen Welt.</p>
+      <br>
+      <p class="about-text">Die Stadt ist bekannt für ihre hohe Lebensqualität, internationale Banken, erstklassige Museen und ein vibrierendes Nachtleben rund um die Langstrasse.</p>
+      <div class="about-stats">
+        <div class="stat-item"><div class="stat-num">415k</div><div class="stat-label">Einwohner</div></div>
+        <div class="stat-item"><div class="stat-num">92km²</div><div class="stat-label">Stadtfläche</div></div>
+        <div class="stat-item"><div class="stat-num">25+</div><div class="stat-label">Museen</div></div>
+        <div class="stat-item"><div class="stat-num">400m</div><div class="stat-label">Über Meer</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&w=800&q=80" alt="Zürich Stadtansicht" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="map">
+  <div class="map-container">
+    <div class="section-tag">Interaktive Karte</div>
+    <h2 class="section-heading">Zürich <em>entdecken</em></h2>
+    <p style="font-size:.7rem;color:var(--muted);margin-top:.5rem;">Klick auf einen Pin für mehr Infos · Legende zum Filtern</p>
+    <div class="map-layout">
+      <div class="map-wrapper">
+        <div class="pin-tooltip" id="tooltip"></div>
+        <svg class="map-svg" viewBox="0 0 700 500" id="mapSvg">
+          <rect width="700" height="500" fill="#0f1f0f"/>
+          <path d="M300 420 Q350 410 420 430 Q480 450 520 490 L700 490 L700 500 L250 500 Z" fill="#0a1a2a" opacity=".9"/>
+          <path d="M220 0 Q230 50 240 100 Q245 150 250 200 Q260 260 280 300 Q295 350 300 420" fill="none" stroke="#0a1a2a" stroke-width="14" opacity=".8"/>
+          <path d="M220 0 Q230 50 240 100 Q245 150 250 200 Q260 260 280 300 Q295 350 300 420" fill="none" stroke="#152535" stroke-width="10" opacity=".8"/>
+          <line x1="0" y1="200" x2="700" y2="200" stroke="#1a2a1a" stroke-width="2"/>
+          <line x1="0" y1="320" x2="700" y2="320" stroke="#1a2a1a" stroke-width="1.5"/>
+          <line x1="150" y1="0" x2="150" y2="500" stroke="#1a2a1a" stroke-width="1.5"/>
+          <line x1="350" y1="0" x2="350" y2="500" stroke="#1a2a1a" stroke-width="1.5"/>
+          <line x1="500" y1="0" x2="500" y2="500" stroke="#1a2a1a" stroke-width="1.5"/>
+          <line x1="50" y1="250" x2="650" y2="180" stroke="#1a2a1a" stroke-width="1"/>
+          <text x="310" y="460" fill="#152535" font-family="Georgia" font-size="14" font-style="italic">Zürichsee</text>
+          <text x="215" y="140" fill="#152535" font-family="Georgia" font-size="11" font-style="italic" transform="rotate(-80,215,140)">Limmat</text>
+          <circle cx="640" cy="50" r="18" fill="none" stroke="#2a3a2a" stroke-width="1"/>
+          <text x="640" y="40" fill="#C9A84C" font-family="Georgia" font-size="10" text-anchor="middle">N</text>
+          <line x1="640" y1="44" x2="640" y2="60" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="30" y1="470" x2="130" y2="470" stroke="#2a3a2a" stroke-width="1"/>
+          <text x="30" y="466" fill="#2a3a2a" font-size="8" font-family="monospace">0</text>
+          <text x="120" y="466" fill="#2a3a2a" font-size="8" font-family="monospace">1km</text>
+          <!-- Sehenswürdigkeiten -->
+          <g class="pin-group" data-cat="sehens" data-name="Grossmünster" data-desc="Romanisches Wahrzeichen Zürichs" onclick="showInfo('Grossmünster','Sehenswürdigkeit','Das Wahrzeichen der Stadt — romanische Doppelturmkirche aus dem 12. Jahrhundert.')">
+            <circle cx="285" cy="280" r="10" fill="#C0392B" opacity=".9"/><circle cx="285" cy="280" r="14" fill="none" stroke="#C0392B" stroke-width="1" opacity=".4"/><text x="285" y="284" fill="white" font-size="8" text-anchor="middle">⛪</text>
+          </g>
+          <g class="pin-group" data-cat="sehens" data-name="Fraumünster" data-desc="Gotische Kirche mit Chagall-Fenstern" onclick="showInfo('Fraumünster','Sehenswürdigkeit','Gotische Kirche aus dem 9. Jahrhundert mit berühmten Chagall-Glasfenstern.')">
+            <circle cx="255" cy="290" r="10" fill="#C0392B" opacity=".9"/><circle cx="255" cy="290" r="14" fill="none" stroke="#C0392B" stroke-width="1" opacity=".4"/><text x="255" y="294" fill="white" font-size="8" text-anchor="middle">⛪</text>
+          </g>
+          <g class="pin-group" data-cat="sehens" data-name="Bahnhofstrasse" data-desc="Weltberühmte Einkaufsstrasse" onclick="showInfo('Bahnhofstrasse','Sehenswürdigkeit','Eine der teuersten Einkaufsstrassen der Welt — 1.4km Luxus vom HB zum See.')">
+            <circle cx="220" cy="230" r="10" fill="#C0392B" opacity=".9"/><circle cx="220" cy="230" r="14" fill="none" stroke="#C0392B" stroke-width="1" opacity=".4"/><text x="220" y="234" fill="white" font-size="8" text-anchor="middle">🛍</text>
+          </g>
+          <!-- Museen -->
+          <g class="pin-group" data-cat="museen" data-name="Kunsthaus Zürich" data-desc="Grösstes Kunstmuseum der Schweiz" onclick="showInfo('Kunsthaus Zürich','Museum','Grösstes Kunstmuseum der Schweiz — Werke von Monet bis Picasso.')">
+            <circle cx="340" cy="240" r="10" fill="#2980B9" opacity=".9"/><circle cx="340" cy="240" r="14" fill="none" stroke="#2980B9" stroke-width="1" opacity=".4"/><text x="340" y="244" fill="white" font-size="8" text-anchor="middle">🎨</text>
+          </g>
+          <g class="pin-group" data-cat="museen" data-name="Landesmuseum" data-desc="Schweizerisches Nationalmuseum" onclick="showInfo('Landesmuseum','Museum','Das Schweizerische Nationalmuseum direkt beim HB — Schweizer Geschichte von A bis Z.')">
+            <circle cx="195" cy="185" r="10" fill="#2980B9" opacity=".9"/><circle cx="195" cy="185" r="14" fill="none" stroke="#2980B9" stroke-width="1" opacity=".4"/><text x="195" y="189" fill="white" font-size="8" text-anchor="middle">🏛</text>
+          </g>
+          <!-- Natur -->
+          <g class="pin-group" data-cat="natur" data-name="Uetliberg" data-desc="Hausberg Zürichs — 871m" onclick="showInfo('Uetliberg','Natur & Aussicht','Zürichs Hausberg mit spektakulärem Panoramablick über Stadt, See und Alpen.')">
+            <circle cx="90" cy="280" r="10" fill="#27AE60" opacity=".9"/><circle cx="90" cy="280" r="14" fill="none" stroke="#27AE60" stroke-width="1" opacity=".4"/><text x="90" y="284" fill="white" font-size="8" text-anchor="middle">⛰</text>
+          </g>
+          <g class="pin-group" data-cat="natur" data-name="Zürichsee" data-desc="Wunderschöner Alpensee" onclick="showInfo('Zürichsee','Natur','Malerischer See direkt in der Stadt — ideal zum Baden, Bootfahren und Flanieren.')">
+            <circle cx="420" cy="455" r="10" fill="#27AE60" opacity=".9"/><circle cx="420" cy="455" r="14" fill="none" stroke="#27AE60" stroke-width="1" opacity=".4"/><text x="420" y="459" fill="white" font-size="8" text-anchor="middle">🌊</text>
+          </g>
+          <!-- Nachtleben -->
+          <g class="pin-group" data-cat="night" data-name="Langstrasse" data-desc="Zürichs Ausgehmeile" onclick="showInfo('Langstrasse','Nachtleben','Pulsierendes Ausgehviertel mit Clubs, Bars und Restaurants für jeden Geschmack.')">
+            <circle cx="160" cy="310" r="10" fill="#8E44AD" opacity=".9"/><circle cx="160" cy="310" r="14" fill="none" stroke="#8E44AD" stroke-width="1" opacity=".4"/><text x="160" y="314" fill="white" font-size="8" text-anchor="middle">🎵</text>
+          </g>
+          <g class="pin-group" data-cat="night" data-name="Rote Fabrik" data-desc="Kulturzentrum am See" onclick="showInfo('Rote Fabrik','Nachtleben / Kultur','Einzigartiges Kulturzentrum direkt am Zürichsee — Konzerte, Ausstellungen, Partys.')">
+            <circle cx="340" cy="420" r="10" fill="#8E44AD" opacity=".9"/><circle cx="340" cy="420" r="14" fill="none" stroke="#8E44AD" stroke-width="1" opacity=".4"/><text x="340" y="424" fill="white" font-size="8" text-anchor="middle">🏭</text>
+          </g>
+          <!-- Essen -->
+          <g class="pin-group" data-cat="food" data-name="Bürkliplatz" data-desc="Markt & Restaurants am See" onclick="showInfo('Bürkliplatz','Essen & Markt','Lebendiger Platz am Seeufer mit Wochenmarkt, Restaurants und Bootsanleger.')">
+            <circle cx="290" cy="390" r="10" fill="#E67E22" opacity=".9"/><circle cx="290" cy="390" r="14" fill="none" stroke="#E67E22" stroke-width="1" opacity=".4"/><text x="290" y="394" fill="white" font-size="8" text-anchor="middle">🍽</text>
+          </g>
+          <g class="pin-group" data-cat="food" data-name="Niederdorf" data-desc="Altstadt-Restaurants & Cafés" onclick="showInfo('Niederdorf','Essen & Altstadt','Malerisches Gässchen mit unzähligen Restaurants, Cafés und Bäckereien.')">
+            <circle cx="295" cy="250" r="10" fill="#E67E22" opacity=".9"/><circle cx="295" cy="250" r="14" fill="none" stroke="#E67E22" stroke-width="1" opacity=".4"/><text x="295" y="254" fill="white" font-size="8" text-anchor="middle">☕</text>
+          </g>
+          <rect x="195" y="205" width="22" height="16" rx="2" fill="#C9A84C" opacity=".9"/>
+          <text x="206" y="217" fill="#0a0a08" font-family="Georgia" font-size="9" text-anchor="middle">HB</text>
+        </svg>
+      </div>
+      <div>
+        <div class="map-legend">
+          <div class="legend-title">Legende</div>
+          <div class="legend-item active" onclick="filterPins('all',this)"><div class="legend-dot" style="background:var(--gold)"></div><span class="legend-text">Alle Orte</span><span class="legend-count">11</span></div>
+          <div class="legend-item" onclick="filterPins('sehens',this)"><div class="legend-dot" style="background:#C0392B"></div><span class="legend-text">Sehenswürdigkeiten</span><span class="legend-count">3</span></div>
+          <div class="legend-item" onclick="filterPins('museen',this)"><div class="legend-dot" style="background:#2980B9"></div><span class="legend-text">Museen</span><span class="legend-count">2</span></div>
+          <div class="legend-item" onclick="filterPins('natur',this)"><div class="legend-dot" style="background:#27AE60"></div><span class="legend-text">Natur & Aussicht</span><span class="legend-count">2</span></div>
+          <div class="legend-item" onclick="filterPins('night',this)"><div class="legend-dot" style="background:#8E44AD"></div><span class="legend-text">Nachtleben</span><span class="legend-count">2</span></div>
+          <div class="legend-item" onclick="filterPins('food',this)"><div class="legend-dot" style="background:#E67E22"></div><span class="legend-text">Essen & Trinken</span><span class="legend-count">2</span></div>
+          <div style="margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--dark4)">
+            <div class="legend-item" style="opacity:.6;cursor:default"><div style="width:22px;height:10px;background:var(--gold);border-radius:1px"></div><span class="legend-text" style="font-size:.6rem">Hauptbahnhof (HB)</span></div>
+          </div>
+        </div>
+        <div class="map-info-box" id="infoBox">
+          <div class="map-info-name" id="infoName"></div>
+          <div class="map-info-cat" id="infoCat"></div>
+          <div class="map-info-desc" id="infoDesc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACES -->
+<section class="section" id="places" style="max-width:1400px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem">
+    <div><div class="section-tag">Top Empfehlungen</div><h2 class="section-heading">Meine <em>Lieblingsplätze</em></h2></div>
+  </div>
+  <div class="places-grid">
+    <div class="place-card"><div class="place-num">01</div><div class="place-cat-dot" style="background:#27AE60"></div><div class="place-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="place-name">Uetliberg</div><div class="place-district">Zürichberg · 871m ü.M.</div><div class="place-desc">Zürichs Hausberg bietet atemberaubende Panoramablicke über die ganze Stadt, den See und bei klarem Wetter bis zu den Alpen. Mit der S10 in 20 Minuten erreichbar.</div><div class="place-tags"><span class="place-tag">Natur</span><span class="place-tag">Aussicht</span><span class="place-tag">Gratis</span></div></div>
+    <div class="place-card"><div class="place-num">02</div><div class="place-cat-dot" style="background:#C0392B"></div><div class="place-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="place-name">Grossmünster</div><div class="place-district">Altstadt · Limmatquai</div><div class="place-desc">Das romanische Wahrzeichen Zürichs wurde im 12. Jahrhundert erbaut. Der Aufstieg auf den Turm belohnt mit einem wunderbaren Blick über die Altstadt und den See.</div><div class="place-tags"><span class="place-tag">Architektur</span><span class="place-tag">Geschichte</span></div></div>
+    <div class="place-card"><div class="place-num">03</div><div class="place-cat-dot" style="background:#2980B9"></div><div class="place-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span></div><div class="place-name">Kunsthaus</div><div class="place-district">Hottingen · Heimplatz 1</div><div class="place-desc">Grösstes Kunstmuseum der Schweiz mit Werken von Monet, Picasso und Munch sowie einer umfangreichen Sammlung zeitgenössischer Kunst im neuen Erweiterungsbau.</div><div class="place-tags"><span class="place-tag">Kunst</span><span class="place-tag">Museum</span><span class="place-tag">CHF 23</span></div></div>
+    <div class="place-card"><div class="place-num">04</div><div class="place-cat-dot" style="background:#27AE60"></div><div class="place-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="place-name">Zürichsee</div><div class="place-district">Seeufer · Enge</div><div class="place-desc">Im Sommer ist der See das Herzstück der Stadt. Baden in einer der öffentlichen Badis, Bootsfahrten oder einfach am Ufer flanieren — absolut unvergleichlich.</div><div class="place-tags"><span class="place-tag">Natur</span><span class="place-tag">Sommer</span><span class="place-tag">Baden</span></div></div>
+    <div class="place-card"><div class="place-num">05</div><div class="place-cat-dot" style="background:#C0392B"></div><div class="place-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span></div><div class="place-name">Fraumünster</div><div class="place-district">Altstadt · Münsterhof</div><div class="place-desc">Gotische Kirche mit den weltberühmten Glasfenstern von Marc Chagall. Ein Kunstwerk in sakralem Kontext — besonders eindrucksvoll bei direktem Sonnenlicht.</div><div class="place-tags"><span class="place-tag">Architektur</span><span class="place-tag">Kunst</span></div></div>
+    <div class="place-card"><div class="place-num">06</div><div class="place-cat-dot" style="background:#E67E22"></div><div class="place-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="place-name">Niederdorf</div><div class="place-district">Altstadt · Niederdorf</div><div class="place-desc">Das lebhafte Gässchen der Altstadt mit Kopfsteinpflaster und einer riesigen Auswahl an Restaurants, Cafés, Buchläden und kleinen Boutiquen.</div><div class="place-tags"><span class="place-tag">Altstadt</span><span class="place-tag">Essen</span><span class="place-tag">Shopping</span></div></div>
+  </div>
+</section>
+
+<!-- NIGHT -->
+<section class="night-section" id="night">
+  <div class="night-inner">
+    <div class="section-tag" style="color:#8E44AD">Nachtleben</div>
+    <h2 class="section-heading" style="color:#fff">Zürich nach <em style="color:#8E44AD">Mitternacht</em></h2>
+    <div class="night-grid">
+      <div class="night-card"><div class="night-card-glow" style="background:linear-gradient(to right,#8E44AD,transparent)"></div><div class="night-card-name">Langstrasse</div><div class="night-card-type" style="color:#8E44AD">Ausgehmeile</div><div class="night-card-desc">Zürichs pulsierendstes Ausgehviertel — Bars, Clubs und Restaurants auf engstem Raum. Besonders die Kreise 4 und 5 sind bekannt für ihre lebendige Szene bis in die frühen Morgenstunden.</div><span class="night-tag" style="background:rgba(142,68,173,.15);color:#8E44AD;border:1px solid rgba(142,68,173,.3)">Ab 21 Uhr · Täglich</span></div>
+      <div class="night-card"><div class="night-card-glow" style="background:linear-gradient(to right,#2980B9,transparent)"></div><div class="night-card-name">Rote Fabrik</div><div class="night-card-type" style="color:#2980B9">Kulturzentrum</div><div class="night-card-desc">Ein legendäres Kulturzentrum direkt am Zürichsee — ehemalige Fabrik mit Konzerten, Theater, Partys und einem Restaurant mit Seeterrasse. Einzigartige Atmosphäre.</div><span class="night-tag" style="background:rgba(41,128,185,.15);color:#2980B9;border:1px solid rgba(41,128,185,.3)">Je nach Veranstaltung</span></div>
+      <div class="night-card"><div class="night-card-glow" style="background:linear-gradient(to right,#E67E22,transparent)"></div><div class="night-card-name">Kaufleuten</div><div class="night-card-type" style="color:#E67E22">Club & Restaurant</div><div class="night-card-desc">Zürichs bekanntester Club in einem historischen Gebäude. Elegantes Ambiente, internationale DJs und eine exklusive Crowd. Freitagabend ist der Höhepunkt der Woche.</div><span class="night-tag" style="background:rgba(230,126,34,.15);color:#E67E22;border:1px solid rgba(230,126,34,.3)">Fr–Sa ab 22 Uhr</span></div>
+      <div class="night-card"><div class="night-card-glow" style="background:linear-gradient(to right,#C0392B,transparent)"></div><div class="night-card-name">Helsinki Club</div><div class="night-card-type" style="color:#C0392B">Bar & Club</div><div class="night-card-desc">Versteckt im Kreis 5, ist der Helsinki Club einer der besten Orte für Underground-Musik. Kleine, intime Atmosphäre, starke Drinks und immer gute Musik.</div><span class="night-tag" style="background:rgba(192,57,43,.15);color:#C0392B;border:1px solid rgba(192,57,43,.3)">Do–Sa ab 22 Uhr</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GEMS -->
+<section class="gems-section" id="gems">
+  <div class="gems-inner">
+    <div class="section-tag">Geheimtipps</div>
+    <h2 class="section-heading">Was Touristen <em>verpassen</em></h2>
+    <div class="divider"></div>
+    <div class="gems-list">
+      <div class="gem-row"><div class="gem-index">01</div><div class="gem-name">Lindenhügel</div><div class="gem-desc">Versteckter Hügel in der Altstadt mit dem schönsten Blick auf Zürich — kaum ein Tourist weiss davon</div><div class="gem-badge">Gratis</div></div>
+      <div class="gem-row"><div class="gem-index">02</div><div class="gem-name">Badi Oberer Letten</div><div class="gem-desc">Legendäres Flussbad in der Limmat — der Treffpunkt der Zürcher im Sommer</div><div class="gem-badge">Gratis</div></div>
+      <div class="gem-row"><div class="gem-index">03</div><div class="gem-name">Predigerkirche</div><div class="gem-desc">Mittelalterliche Klosterkirche mit atemberaubender Akustik und kostenlosem Eintritt</div><div class="gem-badge">Altstadt</div></div>
+      <div class="gem-row"><div class="gem-index">04</div><div class="gem-name">Viaduktmarkt</div><div class="gem-desc">Lokale Designer, Vintage-Shops und Restaurants unter alten Eisenbahnbögen — das andere Zürich</div><div class="gem-badge">Kreis 5</div></div>
+      <div class="gem-row"><div class="gem-index">05</div><div class="gem-name">Polybahn</div><div class="gem-desc">Historische Standseilbahn zur ETH — nur 1.30 CHF und du bist über der Stadt</div><div class="gem-badge">Transport</div></div>
+      <div class="gem-row"><div class="gem-index">06</div><div class="gem-name">Chinawiese</div><div class="gem-desc">Geheimes Picknickparadies am Zürichberg mit Blick auf Stadt und Alpen</div><div class="gem-badge">Natur</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="food-section" id="food">
+  <div class="food-inner">
+    <div class="section-tag">Kulinarik</div>
+    <h2 class="section-heading">Essen & <em>Trinken</em></h2>
+    <div class="food-grid">
+      <div class="food-card">
+        <div class="food-img-ph">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80" alt="Zürcher Geschnetzeltes" loading="lazy">
+        </div>
+        <div class="food-card-body"><div class="food-card-name">Zürcher Geschnetzeltes</div><div class="food-card-type">Lokale Spezialität</div><div class="food-card-desc">Kalbsfleisch in Rahmsauce mit Rösti — das Zürich-Gericht schlechthin. Am besten im Restaurant Kronenhalle probieren.</div><div class="price-range">CHF 35–55</div></div>
+      </div>
+      <div class="food-card">
+        <div class="food-img-ph">
+          <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=500&q=80" alt="Sprüngli Schokolade" loading="lazy">
+        </div>
+        <div class="food-card-body"><div class="food-card-name">Sprüngli</div><div class="food-card-type">Café & Confiserie</div><div class="food-card-desc">Legendäre Zürcher Confiserie an der Bahnhofstrasse. Die Luxemburgerli sind weltberühmt — unbedingt probieren!</div><div class="price-range">CHF 5–20</div></div>
+      </div>
+      <div class="food-card">
+        <div class="food-img-ph">
+          <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=500&q=80" alt="Craft Beer" loading="lazy">
+        </div>
+        <div class="food-card-body"><div class="food-card-name">Hürlimann Areal</div><div class="food-card-type">Craft Beer</div><div class="food-card-desc">Ehemalige Brauerei im Kreis 8 mit lokaler Craft-Beer-Szene, Restaurants und einem der coolsten Hostels der Stadt.</div><div class="price-range">CHF 8–15</div></div>
+      </div>
+      <div class="food-card">
+        <div class="food-img-ph">
+          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=500&q=80" alt="Markt" loading="lazy">
+        </div>
+        <div class="food-card-body"><div class="food-card-name">Markthalle</div><div class="food-card-type">Markt</div><div class="food-card-desc">Die Halle für lokale Produkte — frisches Gemüse, Käse, Brot und Streetfood aus aller Welt unter einem Dach.</div><div class="price-range">CHF 5–25</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="transport-section" id="transport">
+  <div class="transport-inner">
+    <div class="section-tag">Mobilität</div>
+    <h2 class="section-heading">So kommst du <em>überall hin</em></h2>
+    <div class="transport-grid">
+      <div class="transport-card"><div class="transport-icon">✈️</div><div class="transport-name">Flughafen</div><div class="transport-desc">Zürich Airport ist 10 Min mit der S-Bahn vom HB entfernt. Direktzug alle 10 Minuten, CHF 7.20 mit ZVV.</div></div>
+      <div class="transport-card"><div class="transport-icon">🚋</div><div class="transport-name">Tram & Bus</div><div class="transport-desc">15 Tramlinien und zahlreiche Buslinien decken die ganze Stadt ab. ZVV Tageskarte ab CHF 9.20.</div></div>
+      <div class="transport-card"><div class="transport-icon">🚲</div><div class="transport-name">Velo</div><div class="transport-desc">PubliBike Mietfahrräder überall in der Stadt. Die erste halbe Stunde ist gratis mit der App.</div></div>
+      <div class="transport-card"><div class="transport-icon">🚢</div><div class="transport-name">Schiff</div><div class="transport-desc">Kursschiffe auf dem Zürichsee und der Limmat. Mit dem ZVV-Ticket kostenlos nutzbar — malerisch!</div></div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-logo">Zürich Reiseführer</div>
+  <div class="footer-text">Erstellt von <span class="footer-author">Nestor Asanin</span> · 2025</div>
+  <div class="footer-text" style="font-size:.55rem">Schulprojekt · Alle Rechte vorbehalten</div>
+</footer>
+
+<script>
+document.querySelectorAll('.pin-group').forEach(pin=>{
+  pin.style.cursor='pointer';
+  pin.addEventListener('mouseenter',function(e){
+    const tooltip=document.getElementById('tooltip');
+    const rect=document.querySelector('.map-wrapper').getBoundingClientRect();
+    const pinRect=this.getBoundingClientRect();
+    tooltip.textContent=this.dataset.name+' · '+this.dataset.desc;
+    tooltip.style.left=(pinRect.left-rect.left+15)+'px';
+    tooltip.style.top=(pinRect.top-rect.top-35)+'px';
+    tooltip.classList.add('show');
+  });
+  pin.addEventListener('mouseleave',function(){document.getElementById('tooltip').classList.remove('show')});
+});
+function showInfo(name,cat,desc){
+  document.getElementById('infoName').textContent=name;
+  document.getElementById('infoCat').textContent=cat;
+  document.getElementById('infoDesc').textContent=desc;
+  document.getElementById('infoBox').classList.add('visible');
+}
+function filterPins(cat,el){
+  document.querySelectorAll('.legend-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.pin-group').forEach(pin=>{
+    if(cat==='all'||pin.dataset.cat===cat){pin.style.opacity='1';pin.style.pointerEvents='auto'}
+    else{pin.style.opacity='0.1';pin.style.pointerEvents='none'}
+  });
+  if(cat!=='all')document.getElementById('infoBox').classList.remove('visible');
+}
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.1});
+document.querySelectorAll('.place-card,.night-card,.gem-row,.food-card,.transport-card,.stat-item').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .6s ease,transform .6s ease';observer.observe(el);
+});
+</script>
+</body>
+</html>
